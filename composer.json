@@ -1,5 +1,19 @@
 {
+    "name": "wnx/photo-crop",
+    "description": "Process images and cut out single photos",
+    "keywords": ["photo", "image-crop"],
+    "autoload": {
+        "psr-4": {
+            "Wnx\\PhotoCrop\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Wnx\\PhotoCrop\\Tests\\": "tests/"
+        }
+    },
     "require": {
-        "symfony/console": "^3.2"
+        "symfony/console": "^3.2",
+        "nesbot/carbon": "^1.22"
     }
 }
