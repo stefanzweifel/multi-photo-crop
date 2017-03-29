@@ -4,7 +4,7 @@ FUZZ=20
 PRUNE=2
 SUFFIX="__processed.png";
 
-find ./src -type f -name '*.png' -print0 | while IFS= read -r -d '' file; do
+find ./input -type f -name '*.png' -print0 | while IFS= read -r -d '' file; do
     FILENAME=$(basename "$file")
 
     echo "Processing $FILENAME file...";
