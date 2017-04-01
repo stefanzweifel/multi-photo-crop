@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Wnx\PhotoCrop\PhotoCropCommand;
+
+DEFINE('APP_VERSION', '1.0.0');
+
+$application = new Application('Multi Photo Crop', APP_VERSION);
+
+// Register PhotoCrop Command
+$application->add(new PhotoCropCommand());
+
+$application->run();

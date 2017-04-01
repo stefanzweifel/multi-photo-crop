@@ -39,6 +39,11 @@ class PhotoCropCommand extends Command
     {
         $files = glob( $input->getOption('images'));
 
+        if (count($files) <= 0) {
+            $output->writeln('<error>No Files found.</error>');
+            return;
+        }
+
         $helper = $this->getHelper('question');
         $question = new ConfirmationQuestion("Found " . count($files) . " images. Start processing them? ", false);
 
@@ -49,18 +54,18 @@ class PhotoCropCommand extends Command
 
         $now = Carbon::now();
         $output->writeln("<info>Start at {$now->format('Y-m-d H:i:s')} </info>");
-        // $progress = new ProgressBar($output, count($files));
-        // $progress->start();
+        $progress = new ProgressBar($output, count($files));
+        $progress->start();
 
         foreach($files as $file) {
 
             $command = new MultiCrop(realpath($file), $input->getOption('output'));
             $command->fire();
-            // $progress->advance();
+            $progress->advance();
 
         }
 
-        // $progress->finish();
+        $progress->finish();
         $end = Carbon::now();
 
         $output->writeln(' ');

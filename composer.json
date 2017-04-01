@@ -1,7 +1,16 @@
 {
-    "name": "wnx/photo-crop",
+    "name": "wnx/multicrop-photos",
     "description": "Process images and cut out single photos",
+    "homepage": "https://github.com/stefanzweifel/multicrop-photos",
     "keywords": ["photo", "image-crop"],
+     "authors": [
+        {
+            "name": "Stefan Zweifel",
+            "email": "hello@stefanzweifel.io",
+            "homepage": "https://stefanzweifel.io",
+            "role": "Developer"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Wnx\\PhotoCrop\\": "src/"
@@ -15,5 +24,8 @@
     "require": {
         "symfony/console": "^3.2",
         "nesbot/carbon": "^1.22"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0"
     }
 }
