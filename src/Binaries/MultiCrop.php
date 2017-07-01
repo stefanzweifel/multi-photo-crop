@@ -14,7 +14,7 @@ class MultiCrop
      * Path to where processed image should be stored
      * @var string
      */
-    protected $output;
+    protected $outputDestination;
 
     public function __construct($inputFile, $outputDestination)
     {
@@ -42,6 +42,12 @@ class MultiCrop
 
     protected function getOutputPath()
     {
-        return realpath($this->outputDestination) . '/' . $this->getOutputFilename();
+        $folder = realpath($this->outputDestination);
+
+        if ($folder === false) {
+            throw new Exception('Output Folder not found');
+        }
+
+        return $folder . '/' . $this->getOutputFilename();
     }
 }
