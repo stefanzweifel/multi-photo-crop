@@ -5,12 +5,14 @@ namespace Wnx\PhotoCrop;
 use Carbon\Carbon;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Wnx\PhotoCrop\Binaries\MultiCrop;
+use Wnx\PhotoCrop\Managers\DownloadManager;
 
 class PhotoCropCommand extends Command
 {
@@ -82,17 +84,11 @@ class PhotoCropCommand extends Command
         $downloadManager = new DownloadManager();
 
         if (!$downloadManager->doesBinaryExist()) {
-            $helper = $this->getHelper('question');
-            $question = new ConfirmationQuestion("❓  The `multicrop` binary file is missing. Should it be downloaded? [y/n]", false);
 
-            if ($helper->ask($input, $output, $question)) {
-                $output->writeln('<info>🕥  Download `multicrop` binary ...</info>');
-                $downloadManager->download();
-                $output->writeln('<info>✅  Download complete.</info>');
-            } else {
-                $output->writeln('<comment>❌  Abort download and further execution.</comment>');
-                return;
-            }
+            $command = $this->getApplication()->find('download:binary');
+
+            $downloadInput = new ArrayInput([]);
+            $command->run($downloadInput, $output);
         }
     }
 }

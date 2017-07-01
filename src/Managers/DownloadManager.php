@@ -1,12 +1,12 @@
 <?php
 
-namespace Wnx\PhotoCrop;
+namespace Wnx\PhotoCrop\Managers;
 
 class DownloadManager
 {
     const DOWNLOAD_URL = 'http://www.fmwconcepts.com/imagemagick/downloadcounter.php?scriptname=multicrop&dirname=multicrop';
 
-    const PATH_TO_BINARY = __DIR__ . '/../bin/multicrop';
+    const PATH_TO_BINARY = __DIR__ . '/../../bin/multicrop';
 
     /**
      * Downloads Multicrop Binary if it doesn't exist yet

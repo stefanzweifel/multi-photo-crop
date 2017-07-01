@@ -20,7 +20,7 @@ DEFINE('APP_VERSION', '1.0.0');
 
 $application = new Application('Multi Photo Crop', APP_VERSION);
 
-// Register PhotoCrop Command
 $application->add(new PhotoCropCommand());
+$application->add(new \Wnx\PhotoCrop\DownloadMultiCropBinaryCommand());
 
 $application->run();
