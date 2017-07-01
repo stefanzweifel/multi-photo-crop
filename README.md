@@ -2,42 +2,30 @@
 
 Detect and crop multiple photos from a single image. Perfect for digitalizing your old paper photo albums.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+In order to use the script [ImageMagick](http://www.imagemagick.org/script/index.php) has to be installed on your system. (If you're on a Mac I suggest using Homebrew `brew install imagemagick`).
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
+The easiest way to install the the script is by using composer.
 
-Say what the step will be
-
-```
-Give the example
+```shell
+composer global require wnx/multi-photo-crop
 ```
 
-And repeat
+If the installation was successful you should be able to execute the following command:
 
+```shell
+multi-photo-crop --version
 ```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Usage
 
 After installing the package you can run the script like this:
 
 ```shell
-./bin/photo-crop run --images="/path/to/your/images/**/*.png" --output="~/Downloads/"
+multi-photo-crop run --images="/path/to/your/images/**/*.png" --output="~/Downloads/"
 ```
 
 ## Running the tests
@@ -50,8 +38,9 @@ phpunit
 
 ## Built With
 
-* [MultiCrop](http://www.fmwconcepts.com/imagemagick/multicrop/)
-* [Symfony Console](http://symfony.com/doc/current/components/console.html)
+* [MultiCrop](http://www.fmwconcepts.com/imagemagick/multicrop/) (not included in Repository)
+* [Symfony Console](https://github.com/symfony/console)
+* [Symfony Process](https://github.com/symfony/process)
 
 ## Versioning
 
@@ -65,4 +54,4 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-The Multicrop Scripts has a special License. Read more [here](http://www.fmwconcepts.com/imagemagick/multicrop/).
+The Multicrop Script has a special License. Read more [here](http://www.fmwconcepts.com/imagemagick/multicrop/).
