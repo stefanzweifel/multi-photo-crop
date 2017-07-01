@@ -37,7 +37,7 @@ End with an example of getting some data out of the system or using it for a lit
 After installing the package you can run the script like this:
 
 ```shell
-./bin/photo-crop --images="/path/to/your/images/**/*.png" --output="~/Downloads/"
+./bin/photo-crop run --images="/path/to/your/images/**/*.png" --output="~/Downloads/"
 ```
 
 ## Running the tests
