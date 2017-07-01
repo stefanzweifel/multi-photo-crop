@@ -24,10 +24,10 @@ class PhotoCropCommand extends Command
     {
         $this
             ->setName('run')
-            ->setDescription('Process images')
+            ->setDescription('Process images with ImageMagick')
             ->setHelp('Fetch images from disk, process them and store split images in a destination folder')
-            ->addOption('images', 'i', InputOption::VALUE_REQUIRED, 'Path to images which should be processed', null)
-            ->addOption('output', 'o', InputOption::VALUE_REQUIRED, 'Path where output images should be stored', null)
+            ->addArgument('images', InputArgument::REQUIRED, 'Path to images which should be processed')
+            ->addArgument('output', InputArgument::REQUIRED, 'Path where output images should be stored')
             ;
     }
 
@@ -41,7 +41,7 @@ class PhotoCropCommand extends Command
     {
         $this->downloadBinaryIfItDoesntExist($input, $output);
 
-        $files = glob($input->getOption('images'));
+        $files = glob($input->getArgument('images'));
 
         if (count($files) <= 0) {
             $output->writeln('<error>No Files found.</error>');
@@ -62,7 +62,7 @@ class PhotoCropCommand extends Command
         $progress->start();
 
         foreach ($files as $file) {
-            $command = new MultiCrop(realpath($file), $input->getOption('output'));
+            $command = new MultiCrop(realpath($file), $input->getArgument('output'));
             $command->fire();
             $progress->advance();
         }

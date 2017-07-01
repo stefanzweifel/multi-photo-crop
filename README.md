@@ -25,7 +25,7 @@ multi-photo-crop --version
 After installing the package you can run the script like this:
 
 ```shell
-multi-photo-crop run --images="/path/to/your/images/**/*.png" --output="~/Downloads/"
+multi-photo-crop run "/path/to/your/images/**/*.png" "~/Downloads/"
 ```
 
 ## Running the tests
