@@ -1,7 +1,7 @@
 {
     "name": "wnx/multi-photo-crop",
     "description": "Process images and cut out single photos",
-    "homepage": "https://github.com/stefanzweifel/multicrop-photos",
+    "homepage": "https://github.com/stefanzweifel/multi-photo-crop",
     "keywords": ["photo", "image-crop"],
     "authors": [
         {
