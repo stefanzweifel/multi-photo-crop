@@ -2,6 +2,10 @@
 
 namespace Wnx\PhotoCrop\Binaries;
 
+use Exception;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
+
 class MultiCrop
 {
     /**
@@ -16,7 +20,7 @@ class MultiCrop
      */
     protected $outputDestination;
 
-    public function __construct($inputFile, $outputDestination)
+    public function __construct(string $inputFile, string $outputDestination)
     {
         $this->inputFile = $inputFile;
         $this->outputDestination = $outputDestination;
@@ -24,14 +28,31 @@ class MultiCrop
 
     public function fire()
     {
+        $process = $this->getProcess();
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+    }
+
+    /**
+     * Return Multicrop Process Instance
+     * @return Symfony\Component\Process\Process
+     */
+    protected function getProcess() :Process
+    {
         $fuzzines = 20;
         $prune = 2;
 
-        $output = shell_exec(__DIR__ . "/../../bin/multicrop -c 10,10 -d 25 -f $fuzzines -p $prune \"$this->inputFile\" \"{$this->getOutputPath()}\" >> /dev/null 2>&1");
-        // die(var_dump($this->getOutputPath()));
+        return new Process(__DIR__ . "/../../bin/multicrop -c 10,10 -d 25 -f $fuzzines -p $prune \"$this->inputFile\" \"{$this->getOutputPath()}\" >> /dev/null 2>&1");
     }
 
-    protected function getOutputFilename()
+    /**
+     * Generate Filename for processed image
+     * @return string
+     */
+    protected function getOutputFilename() :string
     {
         $suffix    = "__processed__" . time();
         $filename  = basename($this->inputFile);
@@ -40,7 +61,11 @@ class MultiCrop
         return str_replace(".$extension", "{$suffix}.$extension", $filename);
     }
 
-    protected function getOutputPath()
+    /**
+     * Return Output Storage Path
+     * @return string
+     */
+    protected function getOutputPath() :string
     {
         $folder = realpath($this->outputDestination);
 
