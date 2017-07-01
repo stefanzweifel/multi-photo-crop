@@ -41,7 +41,7 @@ class PhotoCropCommand extends Command
     {
         $this->downloadBinaryIfItDoesntExist($input, $output);
 
-        $files = glob( $input->getOption('images'));
+        $files = glob($input->getOption('images'));
 
         if (count($files) <= 0) {
             $output->writeln('<error>No Files found.</error>');
@@ -61,12 +61,10 @@ class PhotoCropCommand extends Command
         $progress = new ProgressBar($output, count($files));
         $progress->start();
 
-        foreach($files as $file) {
-
+        foreach ($files as $file) {
             $command = new MultiCrop(realpath($file), $input->getOption('output'));
             $command->fire();
             $progress->advance();
-
         }
 
         $progress->finish();
@@ -84,7 +82,6 @@ class PhotoCropCommand extends Command
         $downloadManager = new DownloadManager();
 
         if (!$downloadManager->doesBinaryExist()) {
-
             $helper = $this->getHelper('question');
             $question = new ConfirmationQuestion("❓  The `multicrop` binary file is missing. Should it be downloaded? [y/n]", false);
 
@@ -96,8 +93,6 @@ class PhotoCropCommand extends Command
                 $output->writeln('<comment>❌  Abort download and further execution.</comment>');
                 return;
             }
-
         }
     }
-
 }
