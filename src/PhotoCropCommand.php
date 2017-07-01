@@ -26,7 +26,7 @@ class PhotoCropCommand extends Command
             ->setName('run')
             ->setDescription('Process images with ImageMagick')
             ->setHelp('Fetch images from disk, process them and store split images in a destination folder')
-            ->addArgument('images', InputArgument::REQUIRED, 'Path to images which should be processed')
+            ->addArgument('images', InputArgument::REQUIRED, 'Path to images which should be processed, supports globs (/path/*.png)')
             ->addArgument('output', InputArgument::REQUIRED, 'Path where output images should be stored')
             ;
     }
