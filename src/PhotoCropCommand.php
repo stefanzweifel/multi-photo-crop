@@ -14,6 +14,8 @@ use Wnx\PhotoCrop\Binaries\MultiCrop;
 
 class PhotoCropCommand extends Command
 {
+    const PATH_TO_BINARY = __DIR__ . "/../bin/multicrop";
+
     /**
      * Configue the Command
      * @return void
@@ -37,6 +39,8 @@ class PhotoCropCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->downloadBinaryIfItDoesntExist($input, $output);
+
         $files = glob( $input->getOption('images'));
 
         if (count($files) <= 0) {
@@ -45,15 +49,15 @@ class PhotoCropCommand extends Command
         }
 
         $helper = $this->getHelper('question');
-        $question = new ConfirmationQuestion("Found " . count($files) . " images. Start processing them? ", false);
+        $question = new ConfirmationQuestion("❓  Found " . count($files) . " images. Start processing them? ", false);
 
         if (!$helper->ask($input, $output, $question)) {
-            $output->writeln('<comment>Abort processing.</comment>');
+            $output->writeln('<comment>❌  Abort processing.</comment>');
             return;
         }
 
         $now = Carbon::now();
-        $output->writeln("<info>Start at {$now->format('Y-m-d H:i:s')} </info>");
+        $output->writeln("<info>🕥  Start at {$now->format('Y-m-d H:i:s')} </info>");
         $progress = new ProgressBar($output, count($files));
         $progress->start();
 
@@ -69,8 +73,31 @@ class PhotoCropCommand extends Command
         $end = Carbon::now();
 
         $output->writeln(' ');
-        $output->writeln("<info>Finished at {$end->format('Y-m-d H:i:s')}</info>");
-        $output->writeln("<info>It took {$now->diffForHumans($end, true)}</info>");
+        $output->writeln("<info>🕥  Finished at {$end->format('Y-m-d H:i:s')}</info>");
+        $output->writeln("<info>🕥  It took {$now->diffForHumans($end, true)}</info>");
         $output->writeln('<info>✅  Processing completed.</info>');
     }
+
+
+    protected function downloadBinaryIfItDoesntExist($input, $output)
+    {
+        $downloadManager = new DownloadManager();
+
+        if (!$downloadManager->doesBinaryExist()) {
+
+            $helper = $this->getHelper('question');
+            $question = new ConfirmationQuestion("❓  The `multicrop` binary file is missing. Should it be downloaded? [y/n]", false);
+
+            if ($helper->ask($input, $output, $question)) {
+                $output->writeln('<info>🕥  Download `multicrop` binary ...</info>');
+                $downloadManager->download();
+                $output->writeln('<info>✅  Download complete.</info>');
+            } else {
+                $output->writeln('<comment>❌  Abort download and further execution.</comment>');
+                return;
+            }
+
+        }
+    }
+
 }
