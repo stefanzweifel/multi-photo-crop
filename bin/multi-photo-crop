@@ -1,7 +1,17 @@
 #!/usr/bin/env php
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+$files = [
+    __DIR__ . '/../vendor/autoload.php',
+    __DIR__ . '/../../../vendor/autoload.php',
+    __DIR__ . '/../../../../vendor/autoload.php'
+];
+
+foreach ($files as $file) {
+    if (file_exists($file)) {
+        require $file;
+    }
+}
 
 use Symfony\Component\Console\Application;
 use Wnx\PhotoCrop\PhotoCropCommand;
