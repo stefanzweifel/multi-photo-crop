@@ -12,7 +12,7 @@
         }
     ],
     "bin": [
-        "bin/photo-crop"
+        "bin/multi-photo-crop"
     ],
     "autoload": {
         "psr-4": {
