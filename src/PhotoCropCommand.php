@@ -70,7 +70,7 @@ class PhotoCropCommand extends Command
 
         $output->writeln(' ');
         $output->writeln("<info>Finished at {$end->format('Y-m-d H:i:s')}</info>");
-        $output->writeln("<info>It took {$now->diffForHumans($now, true)}</info>");
+        $output->writeln("<info>It took {$now->diffForHumans($end, true)}</info>");
         $output->writeln('<info>✅  Processing completed.</info>');
     }
 }
