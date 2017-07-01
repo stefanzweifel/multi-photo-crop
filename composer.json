@@ -1,15 +1,18 @@
 {
-    "name": "wnx/multicrop-photos",
+    "name": "wnx/multi-photo-crop",
     "description": "Process images and cut out single photos",
     "homepage": "https://github.com/stefanzweifel/multicrop-photos",
     "keywords": ["photo", "image-crop"],
-     "authors": [
+    "authors": [
         {
             "name": "Stefan Zweifel",
             "email": "hello@stefanzweifel.io",
             "homepage": "https://stefanzweifel.io",
             "role": "Developer"
         }
+    ],
+    "bin": [
+        "bin/photo-crop"
     ],
     "autoload": {
         "psr-4": {
