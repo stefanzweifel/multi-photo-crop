@@ -1,6 +1,7 @@
 /vendor
 /build
 /bin/multicrop
+composer.lock
 
 # Multicrop Stuff
 *.mpc
