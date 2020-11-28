@@ -26,9 +26,9 @@ class DownloadMultiCropBinaryCommand extends Command
      * Command Logic
      * @param  InputInterface  $input
      * @param  OutputInterface $output
-     * @return void
+     * @return int
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $downloadManager = new DownloadManager();
 
@@ -47,8 +47,7 @@ class DownloadMultiCropBinaryCommand extends Command
         } else {
             $output->writeln('<info>❕  The Binary already exists. Nothing happend.</info>');
         }
+
+        return 0;
     }
-
-
-
 }

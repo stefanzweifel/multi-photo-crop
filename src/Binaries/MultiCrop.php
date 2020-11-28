@@ -38,14 +38,15 @@ class MultiCrop
 
     /**
      * Return Multicrop Process Instance
-     * @return Symfony\Component\Process\Process
+     * @return Process
+     * @throws Exception
      */
     protected function getProcess() :Process
     {
         $fuzzines = 20;
         $prune = 2;
 
-        return new Process(__DIR__ . "/../../bin/multicrop -c 10,10 -d 25 -f $fuzzines -p $prune \"$this->inputFile\" \"{$this->getOutputPath()}\" >> /dev/null 2>&1");
+        return Process::fromShellCommandline(__DIR__ . "/../../bin/multicrop -c 10,10 -d 25 -f $fuzzines -p $prune \"$this->inputFile\" \"{$this->getOutputPath()}\" >> /dev/null 2>&1");
     }
 
     /**
@@ -64,6 +65,7 @@ class MultiCrop
     /**
      * Return Output Storage Path
      * @return string
+     * @throws Exception
      */
     protected function getOutputPath() :string
     {

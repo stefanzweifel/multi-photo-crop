@@ -37,9 +37,9 @@ class PhotoCropCommand extends Command
      * Command Logic
      * @param  InputInterface  $input
      * @param  OutputInterface $output
-     * @return void
+     * @return int
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->downloadBinaryIfItDoesntExist($input, $output);
 
@@ -76,6 +76,8 @@ class PhotoCropCommand extends Command
         $output->writeln("<info>🕥  Finished at {$end->format('Y-m-d H:i:s')}</info>");
         $output->writeln("<info>🕥  It took {$now->diffForHumans($end, true)}</info>");
         $output->writeln('<info>✅  Processing completed.</info>');
+
+        return 0;
     }
 
 

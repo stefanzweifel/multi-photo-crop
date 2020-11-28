@@ -25,11 +25,12 @@
         }
     },
     "require": {
-        "symfony/console": "~4.0",
-        "nesbot/carbon": "~1.0",
-        "symfony/process": "~4.0"
+        "php": "^7.3",
+        "symfony/console": "~5.0",
+        "nesbot/carbon": "~2.0",
+        "symfony/process": "~5.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.0"
+        "phpunit/phpunit": "^9.0"
     }
 }
