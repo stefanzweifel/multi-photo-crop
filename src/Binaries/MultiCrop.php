@@ -29,6 +29,8 @@ class MultiCrop
     public function fire()
     {
         $process = $this->getProcess();
+        $process->setTimeout(0);
+        $process->setIdleTimeout(0);
         $process->run();
 
         if (!$process->isSuccessful()) {
