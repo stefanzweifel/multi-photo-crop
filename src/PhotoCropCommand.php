@@ -47,7 +47,7 @@ class PhotoCropCommand extends Command
 
         if (count($files) <= 0) {
             $output->writeln('<error>No Files found.</error>');
-            return;
+            return 1;
         }
 
         $helper = $this->getHelper('question');
@@ -55,7 +55,7 @@ class PhotoCropCommand extends Command
 
         if (!$helper->ask($input, $output, $question)) {
             $output->writeln('<comment>❌  Abort processing.</comment>');
-            return;
+            return 1;
         }
 
         $now = Carbon::now();

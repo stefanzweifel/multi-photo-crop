@@ -42,7 +42,7 @@ class DownloadMultiCropBinaryCommand extends Command
                 $output->writeln('<info>✅  Download complete.</info>');
             } else {
                 $output->writeln('<comment>❌  Abort download and further execution.</comment>');
-                return;
+                return 1;
             }
         } else {
             $output->writeln('<info>❕  The Binary already exists. Nothing happend.</info>');
