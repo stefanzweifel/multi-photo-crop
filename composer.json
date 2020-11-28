@@ -3,6 +3,7 @@
     "description": "Process images and cut out single photos",
     "homepage": "https://github.com/stefanzweifel/multi-photo-crop",
     "keywords": ["photo", "image-crop"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Stefan Zweifel",
