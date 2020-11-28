@@ -20,6 +20,13 @@ If the installation was successful you should be able to execute the following c
 multi-photo-crop --version
 ```
 
+If this didn't work, composer binary files are not automatically loaded in your shell.
+You can also call the binary directly by using:
+
+```
+~/.composer/vendor/bin/multi-photo-crop --version
+```
+
 ## Usage
 
 After installing the package you can run the script like this:
